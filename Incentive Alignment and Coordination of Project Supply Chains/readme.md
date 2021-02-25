@@ -12,7 +12,7 @@
       <td>成熟度</td>
    </tr>
    <tr>
-      <td>管</td>
+      <td rowspan="12">管</td>
       <td>数据预处理与标准化</td>
       <td>元器件分类</td>
       <td>XGBoost、决策树、全连接神经网络</td>
