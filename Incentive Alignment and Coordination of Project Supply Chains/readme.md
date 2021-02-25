@@ -78,7 +78,7 @@
       <td>初步实现</td>
    </tr>
    <tr>
-      <td>选</td>
+      <td rowspan="17">选</td>
       <td rowspan="6">替代选型及统型</td>
       <td>元器件替代关系类型分类</td>
       <td>Trans系列模型改、XGBoost、LightGBoost、deep&wide模型改</td>
@@ -167,7 +167,7 @@
       <td>初步实现</td>
    </tr>
    <tr>
-      <td>采</td>
+      <td rowspan="2">采</td>
       <td rowspan="2">元器件需求预测</td>
       <td>元器件需求预测模型</td>
       <td>时序回归模型（传统方法：核函数、小波、傅里叶等）、神经网络模型（LSTM等）</td>
@@ -179,7 +179,7 @@
       <td>未实现</td>
    </tr>
    <tr>
-      <td>测</td>
+      <td rowspan="5">测</td>
       <td rowspan="2">元器件缺陷识别</td>
       <td>超声波扫描显微图片缺陷识别</td>
       <td>目标检测相关模型（YOLO 系列模型等），时序模型（LSTM、CNN等）、手工设计特征描述子分类</td>
