@@ -21,7 +21,7 @@
 
 统型数据流图如下所示：
 
-![avatar](C:/Users/康至娟/Desktop/统型数据流图.png)
+![统型数据流图](C:/Users/康至娟/Desktop/统型数据流图.png)
 
 ## **4 算法伪代码**
 
