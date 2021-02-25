@@ -92,45 +92,9 @@
 ![统型数据流图](/统型数据流图.png)
 
 ## **4 算法伪代码**
-1.	初始化
-result={ } 字典，记录每个元器件替代了哪些元器件，也就是统型结果
-components_update=ID集合，在后续循环中使用，用于更新还没处理的元器件
-count = 1，记录循环次数
-
-2.	逐步替代
-如果components_update中还有元器件：
- 
-1）计算和排序
-如果当前循环次数是p1的倍数，对所有未处理元器件进行全排序：
-row_sum=以components_update为键的字典，存放各元器件的可替代种类数
-对row_sum中的每个元器件：
-按照当前的替代关系（replacement），计算ID列中每个ID出现的次数，也就是每个元器件能替代的种类数，记录在row_sum中
-对row_sum按值进行排序
-取出本次全排序的前p2个，记入列表components_part
-否则，只对前p2个元器件更新排序：
-row_sum=以components_part为键的字典，存放每个元器件的可替代种类数        
-对row_sum中的每个元器件：
-按照当前的替代关系（replacement），计算ID列中每个ID出现的次数，也就是每个元器件能替代的种类数，记录在row_sum中
-对row_sum按值进行排序
- 
-2）替代和删除
-如果最高可替代数量大于1：
-key=根据排序，选择当前可替代数量最高的元器件序号 
-q=[ ] 用于后续循环内的临时变量，存放 i 替代的元器件
- 
-在替代关系中，把元器件key可以替代的元器件取出，记入列表r。
-对r中的每个元器件r[z]：
-如果它们在components_update中，也就是还没有处理，那么：
-①将 r[z] 加入 q ，也就是用 key 替代r[z]
-②因为 r[z] 已处理完，从components_update和components_part中移除
-把替代关系的replacement列中包含r[z]的行都删除，因为r[z]已经被key替代了，不能再被其他元器件替代。
-result[ key ] = q ，将本轮中 key 替代的元器件记录至结果
-print('第',count,'轮：编号',key,"替换了",len(q),'种元器件，分别是',q)
-count =+ 1 循环次数加1
- 
-如果最高可替代数量等于1，说明剩余未处理的元器件都是保留，没有其他替代关系（不替代其他，也不被其他替代）：
-result[key]=key，写入结果
-
+'''
+zheli 
+'''
 
 ## **5 算法用户指南**
 ### 5.1 python安装包和依赖环境
@@ -244,7 +208,29 @@ result[key]=key，写入结果
 </table>
 
 ## **7 相关开发信息**
-
+<table>
+   <tr>
+      <td>名称</td>
+      <td>人员</td>
+      <td>时间</td>
+      <td>版本</td>
+      <td>状态</td>
+   </tr>
+   <tr>
+      <td>gurobi</td>
+      <td>翁欣</td>
+      <td>2020年7月6日</td>
+      <td>version 1</td>
+      <td>已完成</td>
+   </tr>
+   <tr>
+      <td>SCIP</td>
+      <td>康至娟</td>
+      <td>2020年7月6日</td>
+      <td>version 1</td>
+      <td>已完成</td>
+   </tr>
+</table>
 
 ## **参考文献**
 
