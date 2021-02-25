@@ -6,7 +6,75 @@
 统型要求：当两个元器件有替代关系时，保留国产的。
 
 ## **2 文件列表**
+### 2.1 数据文件
+<table>
+   <tr>
+      <td>名称</td>
+      <td>描述</td>
+   </tr>
+   <tr>
+      <td>ID-5</td>
+      <td>元器件数量为5的选用清单</td>
+   </tr>
+   <tr>
+      <td>ID-10</td>
+      <td>元器件数量为10的选用清单</td>
+   </tr>
+   <tr>
+      <td>ID-20</td>
+      <td>元器件数量为20的选用清单</td>
+   </tr>
+   <tr>
+      <td>ID-50</td>
+      <td>元器件数量为50的选用清单</td>
+   </tr>
+   <tr>
+      <td>ID-100</td>
+      <td>元器件数量为100的选用清单</td>
+   </tr>
+   <tr>
+      <td>replacement-5</td>
+      <td>元器件数量为5的替代关系</td>
+   </tr>
+   <tr>
+      <td>replacement-10</td>
+      <td>元器件数量为10的替代关系</td>
+   </tr>
+   <tr>
+      <td>replacement-20</td>
+      <td>元器件数量为20的替代关系</td>
+   </tr>
+   <tr>
+      <td>replacement-50</td>
+      <td>元器件数量为50的替代关系</td>
+   </tr>
+   <tr>
+      <td>replacement-100</td>
+      <td>元器件数量为100的替代关系</td>
+   </tr>
+</table>
 
+### 2.2 算法文件
+<table>
+   <tr>
+      <td>名称</td>
+      <td>典型算法模型</td>
+      <td>实现方法</td>
+      <td>描述</td>
+   </tr>
+   <tr>
+      <td>gurobi</td>
+      <td>精确解统型模型、近似解统型模型</td>
+      <td>0-1整数规划</td>
+      <td>运用gurobi求解器进行统型</td>
+   </tr>
+   <tr>
+      <td>SCIP</td>
+      <td>精确解统型模型、近似解统型模型</td>
+      <td>0-1整数规划</td>
+      <td>运用SCIP求解器进行统型</td>
+   </tr>
+</table>
 
 ## **3 算法流程图**
 根据以上提出的统型目标和统型要求，统型算法步骤如下：
@@ -24,6 +92,44 @@
 ![统型数据流图](/统型数据流图.png)
 
 ## **4 算法伪代码**
+1.	初始化
+result={ } 字典，记录每个元器件替代了哪些元器件，也就是统型结果
+components_update=ID集合，在后续循环中使用，用于更新还没处理的元器件
+count = 1，记录循环次数
+
+2.	逐步替代
+如果components_update中还有元器件：
+ 
+1）计算和排序
+如果当前循环次数是p1的倍数，对所有未处理元器件进行全排序：
+row_sum=以components_update为键的字典，存放各元器件的可替代种类数
+对row_sum中的每个元器件：
+按照当前的替代关系（replacement），计算ID列中每个ID出现的次数，也就是每个元器件能替代的种类数，记录在row_sum中
+对row_sum按值进行排序
+取出本次全排序的前p2个，记入列表components_part
+否则，只对前p2个元器件更新排序：
+row_sum=以components_part为键的字典，存放每个元器件的可替代种类数        
+对row_sum中的每个元器件：
+按照当前的替代关系（replacement），计算ID列中每个ID出现的次数，也就是每个元器件能替代的种类数，记录在row_sum中
+对row_sum按值进行排序
+ 
+2）替代和删除
+如果最高可替代数量大于1：
+key=根据排序，选择当前可替代数量最高的元器件序号 
+q=[ ] 用于后续循环内的临时变量，存放 i 替代的元器件
+ 
+在替代关系中，把元器件key可以替代的元器件取出，记入列表r。
+对r中的每个元器件r[z]：
+如果它们在components_update中，也就是还没有处理，那么：
+①将 r[z] 加入 q ，也就是用 key 替代r[z]
+②因为 r[z] 已处理完，从components_update和components_part中移除
+把替代关系的replacement列中包含r[z]的行都删除，因为r[z]已经被key替代了，不能再被其他元器件替代。
+result[ key ] = q ，将本轮中 key 替代的元器件记录至结果
+print('第',count,'轮：编号',key,"替换了",len(q),'种元器件，分别是',q)
+count =+ 1 循环次数加1
+ 
+如果最高可替代数量等于1，说明剩余未处理的元器件都是保留，没有其他替代关系（不替代其他，也不被其他替代）：
+result[key]=key，写入结果
 
 
 ## **5 算法用户指南**
@@ -46,19 +152,98 @@
 ### 5.4 结果示例
 统型结果（result）
 
+![统型结果（result）](/统型结果（result）.png)
+
 评价指标（indicators)
 
+![评价指标（indicators)](/评价指标（indicators).png)
 
 ## **6 与其他算法的比较**
+精确解和近似解方法在用时上相差不大，精确解能够获得更好的结果。
 
+<table>
+   <tr>
+      <td>统型前元器件种类</td>
+      <td>方法</td>
+      <td>用时（秒）</td>
+      <td>统型后种类（减少比例）</td>
+      <td>备注</td>
+   </tr>
+   <tr>
+      <td rowspan="3">1000</td>
+      <td rowspan="2">精确解</td>
+      <td>3.81</td>
+      <td>490（51%）</td>
+      <td>使用Gurobi求解</td>
+   </tr>
+   <tr>
+      <td>4.38</td>
+      <td>490（51%）</td>
+      <td>使用SCIP求解</td>
+   </tr>
+   <tr>
+      <td>近似解</td>
+      <td>2.73</td>
+      <td>533（46.7%）</td>
+      <td>参数p1=20, p2=100</td>
+   </tr>
+   <tr>
+      <td rowspan="3">3000</td>
+      <td rowspan="2">精确解</td>
+      <td>16.87</td>
+      <td>1451（51.63%）</td>
+      <td>使用Gurobi求解</td>
+   </tr>
+   <tr>
+      <td>18.88</td>
+      <td>1451（51.63%）</td>
+      <td>使用SCIP求解</td>
+   </tr>
+   <tr>
+      <td>近似解</td>
+      <td>12.65</td>
+      <td>1579（47.37%）</td>
+      <td>参数p1=50, p2=150</td>
+   </tr>
+   <tr>
+      <td rowspan="3">5000</td>
+      <td rowspan="2">精确解</td>
+      <td>22.8</td>
+      <td>2445（51.1%）</td>
+      <td>使用Gurobi求解</td>
+   </tr>
+   <tr>
+      <td>37.57</td>
+      <td>2445（51.1%）</td>
+      <td>使用SCIP求解</td>
+   </tr>
+   <tr>
+      <td>近似解</td>
+      <td>30.4</td>
+      <td>2676（46.48%）</td>
+      <td>参数p1=50, p2=150</td>
+   </tr>
+   <tr>
+      <td rowspan="3">10000</td>
+      <td rowspan="2">精确解</td>
+      <td>89.11</td>
+      <td>4456（55.44%）</td>
+      <td>使用Gurobi求解</td>
+   </tr>
+   <tr>
+      <td>189.75</td>
+      <td>4456（55.44%）</td>
+      <td>使用SCIP求解</td>
+   </tr>
+   <tr>
+      <td>近似解</td>
+      <td>214.67</td>
+      <td>5021（49.79%）</td>
+      <td>参数p1=50, p2=150</td>
+   </tr>
+</table>
 
 ## **7 相关开发信息**
-
-
-## **8 License**
-
-
-## **9 相关项目**
 
 
 ## **参考文献**
