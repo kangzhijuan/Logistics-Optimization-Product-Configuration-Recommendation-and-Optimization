@@ -266,6 +266,27 @@
 
 ## **5 算法用户指南**
 ### 5.1 python安装包和依赖环境
+<table>
+   <tr>
+      <td>序号</td>
+      <td>代码</td>
+      <td>依赖环境</td>
+      <td>python安装包</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>gurobi精确解统型算法</td>
+      <td>Python 3.7.1</td>
+      <td>pandas；numpy；gurobipy</td>
+   </tr>
+   <tr>
+      <td>2</td>
+      <td>SCIP精确解统型算法</td>
+      <td>Python 3.7.1</td>
+      <td>pandas；numpy；pyscipopt</td>
+   </tr>
+</table>
+
 
 ### 5.2 算法输入输出
 #### 算法输入：
