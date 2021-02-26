@@ -121,11 +121,12 @@
 ## **4 相关开发信息**
 <table>
    <tr>
-      <td>序号</td>
+      <td>0</td>
       <td>名称</td>
       <td>人员</td>
       <td>时间</td>
       <td>版本</td>
+      <td>状态</td>
    </tr>
    <tr>
       <td>1</td>
@@ -133,6 +134,7 @@
       <td>翁欣；康至娟</td>
       <td>2020年7月6日</td>
       <td>version 1</td>
+      <td>已完成</td>
    </tr>
    <tr>
       <td>2</td>
@@ -140,6 +142,10 @@
       <td>翁欣；康至娟</td>
       <td>2020年7月6日</td>
       <td>version 1</td>
+      <td>已完成</td>
+   </tr>
+   <tr>
+      <td></td>
    </tr>
 </table>
 
