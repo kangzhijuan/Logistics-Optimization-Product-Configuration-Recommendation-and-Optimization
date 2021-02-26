@@ -125,15 +125,15 @@
       <td>状态</td>
    </tr>
    <tr>
-      <td>gurobi</td>
-      <td>翁欣</td>
+      <td>精确解统型算法</td>
+      <td>翁欣；康至娟</td>
       <td>2020年7月6日</td>
       <td>version 1</td>
       <td>已完成</td>
    </tr>
    <tr>
-      <td>SCIP</td>
-      <td>康至娟</td>
+      <td>近似解统型算法</td>
+      <td>翁欣；康至娟</td>
       <td>2020年7月6日</td>
       <td>version 1</td>
       <td>已完成</td>
