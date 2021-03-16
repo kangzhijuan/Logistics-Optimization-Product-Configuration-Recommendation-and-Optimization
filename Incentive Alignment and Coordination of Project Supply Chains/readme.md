@@ -1,142 +1,56 @@
+## **4 算法用户指南**
+### 4.1 python安装包和依赖环境
 <table>
    <tr>
-      <td>名称</td>
-      <td>描述</td>
+      <td>序号</td>
+      <td>代码</td>
+      <td>依赖环境</td>
+      <td>python安装包</td>
    </tr>
    <tr>
-      <td>ID-5</td>
-      <td>元器件数量为5的选用清单</td>
+      <td>1</td>
+      <td>gurobi精确解统型算法</td>
+      <td>Python 3.7.1</td>
+      <td>pandas；numpy；gurobipy</td>
    </tr>
    <tr>
-      <td>ID-10</td>
-      <td>元器件数量为10的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-20</td>
-      <td>元器件数量为20的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-50</td>
-      <td>元器件数量为50的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-100</td>
-      <td>元器件数量为100的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-150</td>
-      <td>元器件数量为150的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-200</td>
-      <td>元器件数量为200的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-250</td>
-      <td>元器件数量为250的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-300</td>
-      <td>元器件数量为300的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-500</td>
-      <td>元器件数量为500的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-750</td>
-      <td>元器件数量为750的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-1000</td>
-      <td>元器件数量为1000的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-2000</td>
-      <td>元器件数量为2000的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-3000</td>
-      <td>元器件数量为3000的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-4000</td>
-      <td>元器件数量为4000的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-5000</td>
-      <td>元器件数量为5000的选用清单</td>
-   </tr>
-   <tr>
-      <td>ID-10000</td>
-      <td>元器件数量为10000的选用清单</td>
-   </tr>
-   <tr>
-      <td>replacement-5</td>
-      <td>元器件数量为5的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-10</td>
-      <td>元器件数量为10的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-20</td>
-      <td>元器件数量为20的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-50</td>
-      <td>元器件数量为50的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-100</td>
-      <td>元器件数量为100的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-150</td>
-      <td>元器件数量为150的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-200</td>
-      <td>元器件数量为200的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-250</td>
-      <td>元器件数量为250的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-300</td>
-      <td>元器件数量为300的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-500</td>
-      <td>元器件数量为500的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-750</td>
-      <td>元器件数量为750的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-1000</td>
-      <td>元器件数量为1000的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-2000</td>
-      <td>元器件数量为2000的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-3000</td>
-      <td>元器件数量为3000的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-4000</td>
-      <td>元器件数量为4000的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-5000</td>
-      <td>元器件数量为5000的替代关系</td>
-   </tr>
-   <tr>
-      <td>replacement-10000</td>
-      <td>元器件数量为10000的替代关系</td>
+      <td>2</td>
+      <td>SCIP精确解统型算法</td>
+      <td>Python 3.7.1</td>
+      <td>pandas；numpy；pyscipopt</td>
    </tr>
 </table>
+
+
+### 4.2 算法输入输出
+#### 算法输入：
+元器件选用清单（ID.xlsx）
+
+元器件替代关系（replacement.xlsx）
+
+#### 算法输出：
+统型结果（result）
+
+评价指标（indicators)
+
+### 4.3 运行步骤
+（1）gurobi精确解统型算法
+
+下载 精确解统型算法 文件夹，打开 gurobi精确解统型算法.py 文件，修改元器件数量num，运行。
+
+（2）SCIP精确解统型算法
+
+下载 精确解统型算法 文件夹，打开 SCIP精确解统型算法.py 文件，修改元器件数量num，运行。
+
+### 4.4 结果示例
+统型结果（result）
+
+![统型结果（result）](/统型结果（result）.png)
+
+评价指标（indicators)
+
+![评价指标（indicators)](/评价指标（indicators).png)
+
+
+## **5 参考文献**
+[1]麦绿波.统型的理论和方法[J].中国标准化,2015(07):68-73+87.
